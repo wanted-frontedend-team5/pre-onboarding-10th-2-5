@@ -1,6 +1,7 @@
 import styled from 'styled-components';
 import { AiOutlineSearch } from 'react-icons/ai';
 import { useState } from 'react';
+import { fetchSuggestionItems } from 'apis/fetchSuggestionItems';
 import { Input } from './common/Input';
 import { Button } from './common/Button';
 import { SearchSuggestions } from './SearchSuggestions';
@@ -59,9 +60,10 @@ export const SearchBar = () => {
     setShowSuggestions(false);
   };
 
-  const handleSearchBarChange = e => {
+  const handleSearchBarChange = async e => {
     const { value } = e.target;
     setSearchValue(value);
+    const ref = await fetchSuggestionItems(value);
   };
 
   return (

@@ -64,44 +64,48 @@ export const SearchBar = () => {
     setShowSuggestions(false);
   };
 
-  const handleSearchBarChange = e => {
-    const { value } = e.target;
-    setSearchValue(value);
+  const getSuggestionItems = async value => {
+    const cachedData = localStorage.getItem(value);
+    const currentTime = new Date().getTime();
+
+    if (cachedData) {
+      const { data, timestamp } = JSON.parse(cachedData);
+      if (currentTime - timestamp < EXPIRE_TIME) {
+        setSuggestions(data);
+        return;
+      }
+    }
+    try {
+      const response = await fetchSuggestionItems(value);
+      const { data } = response;
+
+      localStorage.setItem(
+        value,
+        JSON.stringify({ data, timestamp: currentTime }),
+      );
+      setSuggestions(data);
+      console.info('calling api');
+    } catch (error) {
+      setSuggestions([]);
+      console.error(error);
+    }
+  };
+
+  const debounce = (value, callback) => {
     if (timerId) {
       clearTimeout(timerId);
     }
-
-    const newTimerId = setTimeout(async () => {
-      const cachedData = localStorage.getItem(value);
-      const currentTime = new Date().getTime();
-
-      if (cachedData) {
-        const { data, timestamp } = JSON.parse(cachedData);
-
-        if (currentTime - timestamp < EXPIRE_TIME) {
-          setSuggestions(data);
-          return;
-        }
-      }
-
-      try {
-        const response = await fetchSuggestionItems(value);
-        const { data } = response;
-
-        localStorage.setItem(
-          value,
-          JSON.stringify({ data, timestamp: currentTime }),
-        );
-
-        setSuggestions(data);
-        console.info('calling api');
-      } catch (error) {
-        setSuggestions([]);
-        console.error(error);
-      }
+    const newTimerId = setTimeout(() => {
+      callback(value);
     }, 800);
-
     setTimerId(newTimerId);
+  };
+
+  const handleSearchBarChange = e => {
+    const { value } = e.target;
+    setSearchValue(value);
+
+    debounce(value, getSuggestionItems);
   };
 
   return (

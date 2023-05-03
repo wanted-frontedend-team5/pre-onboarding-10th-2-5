@@ -1,5 +1,5 @@
 import GlobalStyle from 'GlobalStyles';
-import { SearchBar } from 'components/SearchBar';
+import { Main } from 'components/Main';
 import { ThemeProvider } from 'styled-components';
 import { theme } from 'theme';
 
@@ -8,8 +8,7 @@ const App = () => {
   return (
     <ThemeProvider theme={theme}>
       <GlobalStyle />
-      <h1>국내 모든 임상시험 검색하고 온라인으로 참여하기</h1>
-      <SearchBar />
+      <Main />
     </ThemeProvider>
   );
 };

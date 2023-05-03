@@ -1,4 +1,5 @@
 import styled from 'styled-components';
+import { BsSearch } from 'react-icons/bs';
 import { Input } from './common/Input';
 import { Button } from './common/Button';
 
@@ -13,7 +14,9 @@ export const SearchBar = () => {
   return (
     <Container>
       <Form>
-        <div>icon</div>
+        <div>
+          <BsSearch></BsSearch>
+        </div>
         <Input />
         <Button>search</Button>
       </Form>

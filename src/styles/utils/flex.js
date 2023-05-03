@@ -1,24 +1,22 @@
 import { css } from 'styled-components';
 
-function convertFullName(value) {
-  switch (value) {
-    case 'start':
-      return 'flex-start';
-    case 'end':
-      return 'flex-end';
-    case 'between':
-      return 'space-between';
-    case 'around':
-      return 'space-around';
-    default:
-      return value;
-  }
-}
-
-export function flexbox(justifyContent = 'center', alignItems = 'center') {
+const flex = (props = {}) => {
   return css`
-    display: flex;
-    justify-content: ${convertFullName(justifyContent)};
-    align-items: ${convertFullName(alignItems)};
+    display: ${props.display ?? 'flex'};
+    flex-direction: ${props.direction ?? 'row'};
+    align-items: ${props.alignItems ?? 'stretch'};
+    justify-content: ${props.justifyContent ?? 'flex-start'};
   `;
-}
+};
+
+const center = (props = {}) => css`
+  ${flex({ alignItems: 'center', justifyContent: 'center', ...props })}
+`;
+
+const column = (props = {}) => css`
+  ${flex({ direction: 'column', ...props })}
+`;
+
+flex.center = center;
+flex.column = column;
+export { flex };

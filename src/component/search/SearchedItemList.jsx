@@ -1,14 +1,15 @@
 import { SEARCH } from 'constant/search/search';
 import { SearchedItem } from './SearchedItem';
+import { SearchDes, ListBox } from './style/SearchStyle';
 
 export const SearchedItemList = ({ isLoading, curkeyword, keywordList }) => {
   if (isLoading) {
     return (
-      <ul>
+      <ListBox>
         <SearchedItem name={curkeyword} />
         <hr />
-        <SearchedItem name={SEARCH.MESSAGE.STATUS.LOADING} />
-      </ul>
+        <SearchDes>{SEARCH.MESSAGE.STATUS.LOADING}</SearchDes>
+      </ListBox>
     );
   }
 
@@ -23,12 +24,12 @@ export const SearchedItemList = ({ isLoading, curkeyword, keywordList }) => {
   const keywordArraySlice = keywordList.slice(0, SEARCH.MAX_LIST_LENGTH);
 
   return (
-    <ul>
+    <ListBox>
       <SearchedItem name={curkeyword} />
-      <p>{SEARCH.MESSAGE.RECOMMAND_KEYWORD}</p>
+      <SearchDes>{SEARCH.RECOMMAND_KEYWORD}</SearchDes>
       {keywordArraySlice.map(keyword => (
         <SearchedItem key={keyword.id} name={keyword.name} />
       ))}
-    </ul>
+    </ListBox>
   );
 };

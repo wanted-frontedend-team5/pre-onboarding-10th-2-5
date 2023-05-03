@@ -3,6 +3,10 @@ import { colors } from 'styles/constants/colors';
 import { position, textStyle } from 'styles/utils';
 import { recommendationSizes } from './Recommendation.constants';
 
+export const Container = styled.div`
+  position: relative;
+`;
+
 export const Recommendation = styled.div`
   ${position.absolute({ top: '8px' })}
 

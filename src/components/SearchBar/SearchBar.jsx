@@ -29,13 +29,11 @@ export const SearchBar = () => {
         <Styled.Button>검색</Styled.Button>
       </Styled.SearchBar>
 
-      <Styled.RecommendationWrapper>
-        <Recommendation
-          isActive={isVisible}
-          recommendations={recommendations}
-          onClick={handleSearch}
-        />
-      </Styled.RecommendationWrapper>
+      <Recommendation
+        isActive={isVisible}
+        recommendations={recommendations}
+        onClick={handleSearch}
+      />
     </form>
   );
 };

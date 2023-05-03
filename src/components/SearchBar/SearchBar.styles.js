@@ -46,7 +46,3 @@ export const SearchIcon = styled(AiOutlineSearch)`
 
   font-size: ${searchBarSizes.icon}px;
 `;
-
-export const RecommendationWrapper = styled.div`
-  position: relative;
-`;

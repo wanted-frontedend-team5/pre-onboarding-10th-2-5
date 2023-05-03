@@ -1,5 +1,6 @@
 import { createGlobalStyle } from 'styled-components';
 import { reset } from 'styled-reset';
+import { colors } from './constants/colors';
 
 export const GlobalStyle = createGlobalStyle`
   ${reset}
@@ -14,6 +15,7 @@ export const GlobalStyle = createGlobalStyle`
   html {
     line-height: 1.15; /* 1 */
     -webkit-text-size-adjust: 100%; /* 2 */
+    background-color: ${colors.blueLight};
   }
 
   h1 {

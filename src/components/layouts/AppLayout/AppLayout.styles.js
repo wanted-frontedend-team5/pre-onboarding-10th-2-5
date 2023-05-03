@@ -1,5 +1,4 @@
 import styled from 'styled-components';
-import { colors } from 'styles/constants/colors';
 import { APP_MAX_WIDTH } from 'styles/constants/dimensions';
 import { flex } from 'styles/utils/flex';
 
@@ -8,8 +7,6 @@ export const AppLayout = styled.div`
   min-height: 100vh;
 
   padding: 16px;
-
-  background-color: ${colors.blueLight};
 `;
 
 export const Main = styled.main`

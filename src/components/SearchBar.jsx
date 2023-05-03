@@ -62,7 +62,7 @@ export const SearchBar = () => {
     setShowSuggestions(false);
   };
 
-  const handleSearchBarChange = async e => {
+  const handleSearchBarChange = e => {
     const { value } = e.target;
     setSearchValue(value);
 
@@ -74,8 +74,9 @@ export const SearchBar = () => {
       try {
         const ref = await fetchSuggestionItems(value);
         setSuggestions(ref.data);
-        console.log('calling api');
+        console.info('calling api');
       } catch (error) {
+        setSuggestions([]);
         console.error(error);
       }
     }, 800);

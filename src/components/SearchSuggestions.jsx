@@ -1,6 +1,7 @@
-import { AiOutlineSearch } from 'react-icons/ai';
 import styled from 'styled-components';
+
 import { theme } from 'theme';
+import { SuggestionItem } from './SuggestionItem';
 
 const SuggestionsContainer = styled.div`
   position: absolute;
@@ -29,32 +30,19 @@ const Title = styled.p`
   padding-left: 1.5rem;
 `;
 
-const SuggestionItem = styled.li`
-  padding: 0.4rem 0;
-  padding-left: 1.5rem;
-  color: black;
-
-  :hover {
-    background-color: ${theme.hoverColor};
-  }
-`;
-
-const Icon = styled(AiOutlineSearch)`
-  margin-right: 0.5rem;
-`;
-
 export const SearchSuggestions = ({ suggestions }) => {
   return (
     <SuggestionsContainer>
       <SuggestionListContainer>
         <Title>추천 검색어</Title>
         <ul>
-          {suggestions.map(suggestion => (
-            <SuggestionItem key={suggestion.id}>
-              <Icon />
-              {suggestion.name}
-            </SuggestionItem>
-          ))}
+          {suggestions.length ? (
+            suggestions.map(suggestion => (
+              <SuggestionItem id={suggestion.id} name={suggestion.name} />
+            ))
+          ) : (
+            <Title>검색어 없음</Title>
+          )}
         </ul>
       </SuggestionListContainer>
     </SuggestionsContainer>

@@ -1,3 +1,4 @@
+import { SearchBar } from 'components/SearchBar';
 import { Title } from 'components/Title';
 import { AppLayout } from 'components/layouts/AppLayout';
 
@@ -11,6 +12,8 @@ export const App = () => {
         <br />
         온라인으로 참여하기
       </Title>
+
+      <SearchBar />
     </AppLayout>
   );
 };

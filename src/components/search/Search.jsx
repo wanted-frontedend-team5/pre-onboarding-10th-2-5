@@ -5,16 +5,22 @@ import { List } from './List';
 
 export const Search = () => {
   const [inputValue, setInputValue] = useState('');
-  const [userList, setUserList] = useState('');
 
-  useEffect(() => {
-    const getUserList = async () => {
-      const response = await getList(inputValue);
-      setUserList(response);
-    };
-    getUserList();
+  const onClickHandler = async () => {
+    const keys = Object.keys(localStorage);
+    if (!keys.includes(inputValue)) {
+      await getList(inputValue);
+    } else {
+      return null;
+    }
     console.info('calling api');
-  }, [inputValue]);
+  };
+
+  // const handleKeyPress = async e => {
+  //   const cash = localStorage.key(0);
+  //   if (cash !== inputValue) await getList(inputValue);
+  //   console.info('calling api');
+  // };
 
   useEffect(() => {
     if (Date.now() > ONE_MINUTE) localStorage.removeItem('value');
@@ -29,10 +35,11 @@ export const Search = () => {
             type="text"
             placeholder="질환명을 입력해 주세요."
             onChange={e => setInputValue(e.target.value)}
+            // onKeyPress={handleKeyPress}
           />
-          <Button>검색</Button>
+          <Button onClick={onClickHandler}>검색</Button>
         </ElBox>
-        <List data={userList} />
+        <List inputValue={inputValue} />
       </Wrapper>
     </SearchLayout>
   );

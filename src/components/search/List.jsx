@@ -1,11 +1,19 @@
 import styled from 'styled-components';
+import { useState, useEffect } from 'react';
 
-export const List = ({ data }) => {
+export const List = ({ inputValue }) => {
+  const [userList, setUserList] = useState();
+
+  useEffect(() => {
+    const data = JSON.parse(localStorage.getItem(inputValue));
+    setUserList(data?.value);
+  }, [inputValue]);
+
   return (
     <Wrapper>
       <div>추천 검색어</div>
-      {data && data.length > 0 ? (
-        data.map(item => {
+      {userList && userList.length > 0 ? (
+        userList.map(item => {
           const { id } = item;
           return (
             <div key={id}>

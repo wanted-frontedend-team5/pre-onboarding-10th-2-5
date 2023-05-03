@@ -19,10 +19,10 @@ export const getList = async payload => {
     const response = await apis.get(`/?name=${payload}`);
     const now = new Date();
     const obj = {
-      value: response.data,
+      data: response.data,
       expire: now.getTime() + ONE_MINUTE,
     };
-    localStorage.setItem('value', JSON.stringify(obj));
+    localStorage.setItem(payload, JSON.stringify(obj));
     return response.data;
   } catch (error) {
     if (error instanceof AxiosError) {

@@ -1,17 +1,10 @@
-import { getSearchResList } from 'api/search';
+import { MainLayout } from 'component/layout/MainLayout';
+import { SearchComponent } from 'component/search/SearchComponent';
 
 export const Main = () => {
-  const onChangeSearchHandler = async () => {
-    const res = await getSearchResList('갑');
-    console.log(res);
-  };
-
   return (
-    <>
-      <h1> 메인 페이지 </h1>
-      <button type="button" onClick={onChangeSearchHandler}>
-        갑 검색하기
-      </button>
-    </>
+    <MainLayout>
+      <SearchComponent />
+    </MainLayout>
   );
 };

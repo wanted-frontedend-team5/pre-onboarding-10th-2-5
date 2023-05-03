@@ -16,12 +16,6 @@ export const Search = () => {
     console.info('calling api');
   };
 
-  // const handleKeyPress = async e => {
-  //   const cash = localStorage.key(0);
-  //   if (cash !== inputValue) await getList(inputValue);
-  //   console.info('calling api');
-  // };
-
   useEffect(() => {
     if (Date.now() > ONE_MINUTE) localStorage.removeItem('value');
   }, []);
@@ -35,7 +29,6 @@ export const Search = () => {
             type="text"
             placeholder="질환명을 입력해 주세요."
             onChange={e => setInputValue(e.target.value)}
-            // onKeyPress={handleKeyPress}
           />
           <Button onClick={onClickHandler}>검색</Button>
         </ElBox>

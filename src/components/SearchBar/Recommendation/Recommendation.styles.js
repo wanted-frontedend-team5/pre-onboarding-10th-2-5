@@ -29,5 +29,6 @@ export const Title = styled.h2`
 `;
 
 export const SearchEmpty = styled.p`
+  padding: 0 ${recommendationSizes.paddingX}px;
   ${textStyle(16)}
 `;

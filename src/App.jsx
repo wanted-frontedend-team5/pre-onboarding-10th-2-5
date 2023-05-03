@@ -1,11 +1,50 @@
-const App = () => {
+import { useEffect, useRef, useState } from 'react';
+import GlobalStyle from 'GlobalStyle';
+import { Container, SearchWrapper } from 'styles';
+import { getSearchRecommend } from 'api/search';
+import Title from 'components/Title';
+import SearchInput from 'components/SearchInput';
+import Recommend from 'components/Recommend';
+import useOutSideRef from 'hooks/useOutSideRef';
 
-  // todo : 기업 정보가 노출되면 안됩니다 .env를 사용해서 url을 써주세요.
-  const type = 'submit';
+const App = () => {
+  const [query, setQuery] = useState('');
+  const [data, setData] = useState([]);
+  const [searchFocus, setSearchFocus] = useState(false);
+  const inputRef = useRef(null);
+  const outSideRef = useOutSideRef(setSearchFocus);
+
+  const handleChangeValue = async e => {
+    setQuery(e.target.value);
+  };
+  const handleFocus = () => setSearchFocus(true);
+
+  useEffect(() => {
+    if (query === '') return;
+
+    const timer = setTimeout(async () => {
+      const res = await getSearchRecommend(query);
+      setData(res);
+    }, 200);
+
+    return () => clearTimeout(timer);
+  }, [query]);
+
   return (
     <div>
-      <header>init project</header>
-      <button type={type}>123</button>
+      <GlobalStyle />
+      <Container>
+        <Title />
+        <SearchWrapper>
+          <SearchInput
+            ref={inputRef}
+            onChange={handleChangeValue}
+            onFocus={handleFocus}
+            onClickOutSiede={outSideRef}
+          />
+          <Recommend list={data} searched={query !== ''} active={searchFocus} />
+        </SearchWrapper>
+      </Container>
     </div>
   );
 };

@@ -13,6 +13,7 @@ export const getSearchRecommend = async value => {
         name: value,
       },
     });
+    // eslint-disable-next-line no-console
     console.info('calling api');
     return response;
   } catch (error) {

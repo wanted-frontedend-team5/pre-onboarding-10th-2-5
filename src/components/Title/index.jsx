@@ -1,7 +1,7 @@
 import React from 'react';
 import { Wrapper } from './styles';
 
-function index() {
+function Title() {
   return (
     <Wrapper>
       국내 모든 임상시험 검색하고
@@ -10,4 +10,4 @@ function index() {
   );
 }
 
-export default index;
+export default Title;

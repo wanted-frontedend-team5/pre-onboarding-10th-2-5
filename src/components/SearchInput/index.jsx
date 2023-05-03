@@ -1,4 +1,4 @@
-import React from 'react';
+import { useRef } from 'react';
 import { FiSearch } from 'react-icons/fi';
 import {
   Container,
@@ -8,7 +8,7 @@ import {
   SearchIcon,
 } from './styles';
 
-function index({ fetch }) {
+function SearchInput({ onChange }) {
   return (
     <Container>
       <InputWrapper>
@@ -21,7 +21,7 @@ function index({ fetch }) {
               type="text"
               id="searchBar"
               placeholder="질환명을 입력해 주세요."
-              onChange={fetch}
+              onChange={onChange}
             />
           </label>
         </Input>
@@ -31,4 +31,4 @@ function index({ fetch }) {
   );
 }
 
-export default index;
+export default SearchInput;

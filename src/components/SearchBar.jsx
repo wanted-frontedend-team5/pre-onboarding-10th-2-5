@@ -54,6 +54,8 @@ export const SearchBar = () => {
   const [suggestions, setSuggestions] = useState([]);
   const [timerId, setTimerId] = useState(0);
 
+  const EXPIRE_TIME = 60 * 60 * 1000;
+
   const handleSearchBarClick = () => {
     setShowSuggestions(true);
   };
@@ -65,15 +67,31 @@ export const SearchBar = () => {
   const handleSearchBarChange = e => {
     const { value } = e.target;
     setSearchValue(value);
-
     if (timerId) {
       clearTimeout(timerId);
     }
 
     const newTimerId = setTimeout(async () => {
+      const cachedData = localStorage.getItem(value);
+      const currentTime = new Date().getTime();
+
+      if (cachedData) {
+        const { timestamp } = JSON.parse(cachedData);
+
+        if (currentTime - timestamp < EXPIRE_TIME) {
+          setSuggestions(JSON.parse(cachedData));
+          return;
+        }
+      }
       try {
-        const ref = await fetchSuggestionItems(value);
-        setSuggestions(ref.data);
+        const response = await fetchSuggestionItems(value);
+        const { data } = response;
+
+        localStorage.setItem(
+          value,
+          JSON.stringify({ data, timestamp: currentTime }),
+        );
+        setSuggestions(data);
         console.info('calling api');
       } catch (error) {
         setSuggestions([]);

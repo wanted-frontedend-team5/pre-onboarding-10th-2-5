@@ -1,4 +1,4 @@
-import { SEARCH } from 'constant/search/message';
+import { SEARCH } from 'constant/search/search';
 import { SearchedItem } from './SearchedItem';
 
 export const SearchedItemList = ({ isLoading, curkeyword, keywordList }) => {
@@ -7,7 +7,7 @@ export const SearchedItemList = ({ isLoading, curkeyword, keywordList }) => {
       <ul>
         <SearchedItem name={curkeyword} />
         <hr />
-        <SearchedItem name={SEARCH.STATUS.LODING} />
+        <SearchedItem name={SEARCH.MESSAGE.STATUS.LOADING} />
       </ul>
     );
   }
@@ -15,18 +15,18 @@ export const SearchedItemList = ({ isLoading, curkeyword, keywordList }) => {
   if (keywordList.length === 0) {
     return (
       <ul>
-        <SearchedItem name={curkeyword} />
-        <p>{SEARCH.RECOMMAND_KEYWORD}</p>
-        <SearchedItem name={SEARCH.STATUS.KEYWORD_NONE} />
+        <SearchedItem name={SEARCH.MESSAGE.STATUS.KEYWORD_NONE} />
       </ul>
     );
   }
 
+  const keywordArraySlice = keywordList.slice(0, SEARCH.MAX_LIST_LENGTH);
+
   return (
     <ul>
       <SearchedItem name={curkeyword} />
-      <p>{SEARCH.RECOMMAND_KEYWORD}</p>
-      {keywordList.map(keyword => (
+      <p>{SEARCH.MESSAGE.RECOMMAND_KEYWORD}</p>
+      {keywordArraySlice.map(keyword => (
         <SearchedItem key={keyword.id} name={keyword.name} />
       ))}
     </ul>

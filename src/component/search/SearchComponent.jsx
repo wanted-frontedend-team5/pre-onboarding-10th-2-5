@@ -1,4 +1,4 @@
-import { SEARCH } from 'constant/search/message';
+import { SEARCH } from 'constant/search/search';
 import { SearchForm } from './SearchForm';
 
 export const SearchComponent = () => {

@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { SEARCH } from 'constant/search/message';
+import { SEARCH } from 'constant/search/search';
 import { STATUS_CODE } from 'constant/api/statusCode';
 import { getSearchResList } from 'api/search';
 import { SearchedItemList } from './SearchedItemList';

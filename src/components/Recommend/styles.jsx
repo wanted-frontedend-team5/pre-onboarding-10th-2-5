@@ -1,7 +1,7 @@
 import styled from 'styled-components';
 
 export const Container = styled.div`
-  display: flex;
+  display: ${props => (props.active ? 'flex' : 'none')};
   flex-direction: column;
   width: 490px;
   max-height: 320px;
@@ -24,7 +24,6 @@ export const RecommendList = styled.div`
   height: 100%;
   display: flex;
   flex-direction: column;
-  gap: 20px;
   overflow: hidden;
 `;
 
@@ -34,6 +33,7 @@ export const RecommendItem = styled.div`
   display: flex;
   align-items: center;
   gap: 10px;
+  padding: 10px 0;
 `;
 
 export const ItemText = styled.span`

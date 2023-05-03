@@ -1,5 +1,5 @@
-import { useRef } from 'react';
 import { FiSearch } from 'react-icons/fi';
+import { forwardRef } from 'react';
 import {
   Container,
   Input,
@@ -8,7 +8,7 @@ import {
   SearchIcon,
 } from './styles';
 
-function SearchInput({ onChange }) {
+function SearchInput({ onChange, onFocus }, ref) {
   return (
     <Container>
       <InputWrapper>
@@ -21,7 +21,9 @@ function SearchInput({ onChange }) {
               type="text"
               id="searchBar"
               placeholder="질환명을 입력해 주세요."
+              ref={ref}
               onChange={onChange}
+              onFocus={onFocus}
             />
           </label>
         </Input>
@@ -31,4 +33,4 @@ function SearchInput({ onChange }) {
   );
 }
 
-export default SearchInput;
+export default forwardRef(SearchInput);

@@ -9,24 +9,19 @@ import {
   Text,
 } from './styles';
 
-function Recommend({ list }) {
-  const [isSearch, setIsSearch] = useState(false);
-
-  useEffect(() => {
-    if (list.length !== 0) setIsSearch(true);
-  }, [list.length]);
-
+function Recommend({ searched, list, active }) {
   return (
-    <Container>
+    <Container active={active}>
       <Text>추천 검색어</Text>
-      <Empty>검색어 없음</Empty>
+      {!searched && <Empty>검색어 없음</Empty>}
       <RecommendList>
-        {list.map(el => (
-          <RecommendItem key={el.id}>
-            <FiSearch />
-            <ItemText>{el.name}</ItemText>
-          </RecommendItem>
-        ))}
+        {list &&
+          list.map(el => (
+            <RecommendItem key={el.id}>
+              <FiSearch />
+              <ItemText>{el.name}</ItemText>
+            </RecommendItem>
+          ))}
       </RecommendList>
     </Container>
   );

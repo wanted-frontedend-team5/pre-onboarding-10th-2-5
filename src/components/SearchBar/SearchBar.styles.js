@@ -47,10 +47,6 @@ export const Button = styled.button`
   color: ${colors.white};
 
   background-color: ${colors.blue};
-
-  &:focus {
-    outline: -webkit-focus-ring-color auto 1px;
-  }
 `;
 
 export const SearchIcon = styled(AiOutlineSearch)`

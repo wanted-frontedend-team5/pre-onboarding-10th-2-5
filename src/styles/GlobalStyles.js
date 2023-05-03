@@ -33,7 +33,7 @@ export const GlobalStyle = createGlobalStyle`
     border: 0;
 
     &:focus {
-      outline: none;
+      outline: -webkit-focus-ring-color auto 1px;
       box-shadow: none;
     }
   }

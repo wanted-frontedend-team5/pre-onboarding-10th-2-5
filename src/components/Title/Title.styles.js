@@ -6,6 +6,7 @@ export const Title = styled.h1`
 
   ${textStyle(34)}
   font-weight: 700;
+  white-space: pre-line;
 
   text-align: center;
 `;

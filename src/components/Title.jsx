@@ -1,10 +1,11 @@
 import styled from 'styled-components';
+import { theme } from 'theme';
 
 const Container = styled.main`
   display: flex;
   flex-direction: column;
   align-items: center;
-  font-size: 1.8rem;
+  font-size: ${theme.lg};
   font-weight: 600;
   margin-bottom: 1.5rem;
 

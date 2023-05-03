@@ -13,7 +13,8 @@ export const getSearchResList = async searchItem => {
         name: searchItem,
       },
     });
-
+    // eslint-disable-next-line no-console
+    console.info('calling api');
     return result;
   } catch (error) {
     if (error instanceof AxiosError) {

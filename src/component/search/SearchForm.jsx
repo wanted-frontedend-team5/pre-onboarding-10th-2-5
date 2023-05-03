@@ -1,4 +1,5 @@
-import { useState } from 'react';
+import { useCallback, useEffect, useState } from 'react';
+import { SearchCacheService } from 'lib/SearchCacheService';
 import { SEARCH } from 'constant/search/search';
 import { STATUS_CODE } from 'constant/api/statusCode';
 import { getSearchResList } from 'api/search';
@@ -17,9 +18,18 @@ export const SearchForm = () => {
   const [isShowList, setShow] = useState(false);
 
   const getChangeKeywordList = async keyword => {
+    const cacheCheck = SearchCacheService.checkKeyword(keyword);
+
+    if (cacheCheck) {
+      setKeywordList(cacheCheck.data);
+      return;
+    }
+
     const res = await getSearchResList(keyword);
     if (res.status === STATUS_CODE.SEARCH_SUCCESS) {
-      setKeywordList(res.data);
+      if (res.data.length > 0) {
+        setKeywordList(res.data);
+      }
     }
   };
 
@@ -27,6 +37,7 @@ export const SearchForm = () => {
     e.preventDefault();
     const inputKeyword = e.target.value;
     setKeyword(inputKeyword);
+
     if (inputKeyword.length > 0) {
       setLoading(true);
       await getChangeKeywordList(inputKeyword);
@@ -45,6 +56,15 @@ export const SearchForm = () => {
   const onBlurSearchInput = () => {
     setShow(false);
   };
+
+  const setKeywordHandler = useCallback(value => {
+    setKeyword(value);
+  }, []);
+
+  useEffect(() => {
+    if (keyWordList.length > 0)
+      SearchCacheService.putDataCache(curKeyword, keyWordList);
+  }, [curKeyword, keyWordList]);
 
   return (
     <>
@@ -68,6 +88,7 @@ export const SearchForm = () => {
             curkeyword={curKeyword}
             isLoading={isLoading}
             keywordList={keyWordList}
+            setKeyword={setKeywordHandler}
           />
         </SearchedListBox>
       )}

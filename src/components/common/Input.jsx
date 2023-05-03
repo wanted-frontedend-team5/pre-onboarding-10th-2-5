@@ -1,7 +1,9 @@
 import styled from 'styled-components';
-import { theme } from 'theme';
 
-const StyleInput = styled.input``;
+const StyleInput = styled.input`
+  width: 100%;
+  background-color: inherit;
+`;
 
 export const Input = ({ placeholder, type, onChange, value }) => {
   return (

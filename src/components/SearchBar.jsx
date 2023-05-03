@@ -1,11 +1,18 @@
-import Input from './Input';
+import styled from 'styled-components';
+import { Input } from './common/Input';
+import { Button } from './common/Button';
+
+const Container = styled.div`
+  display: flex;
+  align-items: center;
+`;
 
 export const SearchBar = () => {
   return (
-    <div>
+    <Container>
       <div>icon</div>
       <Input />
-      <button>search</button>
-    </div>
+      <Button>search</Button>
+    </Container>
   );
 };

@@ -12,7 +12,7 @@ const StyleInput = styled.input`
   }
 `;
 
-function Input({ placeholder, type, onChange, value }) {
+export const Input = ({ placeholder, type, onChange, value }) => {
   return (
     <StyleInput
       placeholder={placeholder}
@@ -21,6 +21,4 @@ function Input({ placeholder, type, onChange, value }) {
       value={value}
     />
   );
-}
-
-export default Input;
+};

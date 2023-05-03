@@ -1,5 +1,4 @@
 import GlobalStyle from 'GlobalStyles';
-import Input from 'components/Input';
 import { SearchBar } from 'components/SearchBar';
 import { ThemeProvider } from 'styled-components';
 import { theme } from 'theme';

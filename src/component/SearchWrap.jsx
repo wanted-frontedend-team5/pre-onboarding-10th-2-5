@@ -3,7 +3,6 @@ import { Button, Input, KeywordRecommendWindow } from 'component/';
 import { useEffect, useState } from 'react';
 
 export const SearchWrap = () => {
-  // todo : 기업 정보가 노출되면 안됩니다 .env를 사용해서 url을 써주세요.
   const buttonType = 'submit';
   const [inputValue, setInputValue] = useState('');
   const [recommendList, setRecommendList] = useState([]);
@@ -17,7 +16,7 @@ export const SearchWrap = () => {
       if (inputValue) {
         const newList = await getRecommendData(inputValue);
         setRecommendList(newList);
-        console.log(recommendList);
+        // eslint-disable-next-line no-console
       }
     }, 200);
     return () => {

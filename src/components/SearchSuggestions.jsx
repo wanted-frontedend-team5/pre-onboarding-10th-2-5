@@ -30,7 +30,12 @@ const Title = styled.p`
   padding-left: 1.5rem;
 `;
 
-export const SearchSuggestions = ({ suggestions, activeSuggestion }) => {
+export const SearchSuggestions = ({
+  suggestions,
+  activeSuggestion,
+  setActiveSuggestion,
+  setSearchValue,
+}) => {
   return (
     <SuggestionsContainer>
       <SuggestionListContainer>
@@ -38,6 +43,8 @@ export const SearchSuggestions = ({ suggestions, activeSuggestion }) => {
         <SuggestionList
           suggestions={suggestions}
           activeSuggestion={activeSuggestion}
+          setActiveSuggestion={setActiveSuggestion}
+          setSearchValue={setSearchValue}
         />
       </SuggestionListContainer>
     </SuggestionsContainer>

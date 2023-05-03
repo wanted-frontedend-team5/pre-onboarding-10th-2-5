@@ -18,9 +18,30 @@ const StyleSuggestionItem = styled.li`
   ${({ isActive }) => isActive && `background-color: ${theme.hoverColor};`}
 `;
 
-export const SuggestionItem = ({ id, name, activeSuggestion, index }) => {
+export const SuggestionItem = ({
+  id,
+  name,
+  activeSuggestion,
+  index,
+  setActiveSuggestion,
+  setSearchValue,
+  suggestions,
+}) => {
+  const handlerMouseOver = () => {
+    setActiveSuggestion(index);
+  };
+
+  const handlerClick = () => {
+    setSearchValue(suggestions[index].name);
+  };
+
   return (
-    <StyleSuggestionItem key={id} isActive={index === activeSuggestion}>
+    <StyleSuggestionItem
+      key={id}
+      isActive={index === activeSuggestion}
+      onMouseOver={handlerMouseOver}
+      onClick={handlerClick}
+    >
       <Icon />
       {name}
     </StyleSuggestionItem>

@@ -52,8 +52,8 @@ export const SearchBar = () => {
   const [showSuggestions, setShowSuggestions] = useState(false);
   const [searchValue, setSearchValue] = useState('');
   const [suggestions, setSuggestions] = useState([]);
-  const [timerId, setTimerId] = useState(0);
   const [activeSuggestion, setActiveSuggestion] = useState(0);
+  const [timerId, setTimerId] = useState(0);
 
   const EXPIRE_TIME = 60 * 60 * 1000;
 
@@ -138,6 +138,8 @@ export const SearchBar = () => {
           <SearchSuggestions
             suggestions={suggestions}
             activeSuggestion={activeSuggestion}
+            setActiveSuggestion={setActiveSuggestion}
+            setSearchValue={setSearchValue}
           />
         )}
       </Form>

@@ -7,7 +7,12 @@ const SuggestionItemState = styled.p`
   font-size: ${theme.sm};
   text-align: center;
 `;
-export const SuggestionList = ({ suggestions, activeSuggestion }) => {
+export const SuggestionList = ({
+  suggestions,
+  activeSuggestion,
+  setActiveSuggestion,
+  setSearchValue,
+}) => {
   return (
     <ul>
       {suggestions.length ? (
@@ -17,6 +22,9 @@ export const SuggestionList = ({ suggestions, activeSuggestion }) => {
             name={suggestion.name}
             activeSuggestion={activeSuggestion}
             index={index}
+            setActiveSuggestion={setActiveSuggestion}
+            setSearchValue={setSearchValue}
+            suggestions={suggestions}
           />
         ))
       ) : (

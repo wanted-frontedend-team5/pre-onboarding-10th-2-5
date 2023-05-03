@@ -1,3 +1,4 @@
+import { AiOutlineSearch } from 'react-icons/ai';
 import styled from 'styled-components';
 
 const SuggestionsContainer = styled.div`
@@ -12,12 +13,38 @@ const SuggestionsContainer = styled.div`
   background-color: white;
 `;
 
+const SuggestionListContainer = styled.div`
+  padding-left: 1rem;
+
+  &:first-child {
+    padding-top: 1rem;
+  }
+
+  &:last-child {
+    padding-bottom: 1rem;
+  }
+`;
+
+const SuggestionItem = styled.li`
+  padding-top: 0.8rem;
+`;
+
+const Icon = styled(AiOutlineSearch)`
+  margin-right: 0.5rem;
+`;
+
 export const SearchSuggestions = () => {
   return (
     <SuggestionsContainer>
-      <div>adf</div>
-      <div>adf</div>
-      <div>adf</div>
+      <SuggestionListContainer>
+        <p>추천 검색어</p>
+        <ul>
+          <SuggestionItem>
+            <Icon />
+            adf
+          </SuggestionItem>
+        </ul>
+      </SuggestionListContainer>
     </SuggestionsContainer>
   );
 };

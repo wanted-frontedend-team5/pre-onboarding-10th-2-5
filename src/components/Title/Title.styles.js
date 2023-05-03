@@ -1,8 +1,8 @@
 import styled from 'styled-components';
+import { textStyle } from 'styles/utils/textStyle';
 
 export const Title = styled.h1`
-  font-size: 34px;
-  line-height: 1.6;
+  ${textStyle(34)}
   font-weight: 700;
 
   text-align: center;

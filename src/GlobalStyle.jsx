@@ -51,6 +51,10 @@ button {
   all: unset;
 	cursor: pointer;
 }
+input {
+	all: unset;
+	cursor: text;
+}
 `;
 
 export default reset;

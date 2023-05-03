@@ -8,7 +8,7 @@ import {
   SearchIcon,
 } from './styles';
 
-function index() {
+function index({ fetch }) {
   return (
     <Container>
       <InputWrapper>
@@ -21,6 +21,7 @@ function index() {
               type="text"
               id="searchBar"
               placeholder="질환명을 입력해 주세요."
+              onChange={fetch}
             />
           </label>
         </Input>

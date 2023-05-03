@@ -5,13 +5,15 @@ const instance = axios.create({
 });
 
 export const getSearchRecommend = async value => {
+  if (value === '') return;
+
   try {
     const response = await instance.get('/api/v1/search-conditions/', {
       params: {
         name: value,
       },
     });
-
+    console.info('calling api');
     return response;
   } catch (error) {
     if (error instanceof AxiosError) {

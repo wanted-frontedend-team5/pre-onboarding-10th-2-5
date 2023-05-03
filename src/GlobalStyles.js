@@ -1,4 +1,5 @@
 import { createGlobalStyle } from 'styled-components';
+import { theme } from 'theme';
 
 const GlobalStyle = createGlobalStyle`
 @import url('https://fonts.googleapis.com/css2?family=Open+Sans:wght@300&display=swap');
@@ -34,6 +35,7 @@ footer, header, hgroup, main, menu, nav, section {
 }
 body {
   line-height: 1;
+  background-color: ${theme.bgColor};
 }
 menu, ol, ul {
   list-style: none;

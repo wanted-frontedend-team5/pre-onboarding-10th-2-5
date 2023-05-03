@@ -1,6 +1,9 @@
 export const theme = {
-  bgColor: '#CAE9FF',
-  pointColor: '#007BE9',
+  bgColor: '#F3F6FA',
+  pointColor: '#CAE9FF',
+  buttonColor: '#007BE9',
+  hoverColor: '#F8F9FA',
 
+  sm: '0.8rem',
   lg: '1.8rem',
 };

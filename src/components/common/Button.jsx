@@ -11,7 +11,7 @@ const Container = styled.button`
   border-bottom-right-radius: 1.5rem;
   padding-left: 1rem;
 
-  background-color: ${theme.pointColor};
+  background-color: ${theme.buttonColor};
   color: white;
 
   :hover {

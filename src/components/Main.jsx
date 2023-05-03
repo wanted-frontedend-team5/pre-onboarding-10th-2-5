@@ -9,7 +9,7 @@ const Container = styled.main`
   justify-content: center;
   align-items: center;
   height: 20rem;
-  background-color: ${theme.bgColor};
+  background-color: ${theme.pointColor};
 `;
 
 export const Main = () => {

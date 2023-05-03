@@ -76,13 +76,14 @@ export const SearchBar = () => {
       const currentTime = new Date().getTime();
 
       if (cachedData) {
-        const { timestamp } = JSON.parse(cachedData);
+        const { data, timestamp } = JSON.parse(cachedData);
 
         if (currentTime - timestamp < EXPIRE_TIME) {
-          setSuggestions(JSON.parse(cachedData));
+          setSuggestions(data);
           return;
         }
       }
+
       try {
         const response = await fetchSuggestionItems(value);
         const { data } = response;
@@ -91,6 +92,7 @@ export const SearchBar = () => {
           value,
           JSON.stringify({ data, timestamp: currentTime }),
         );
+
         setSuggestions(data);
         console.info('calling api');
       } catch (error) {

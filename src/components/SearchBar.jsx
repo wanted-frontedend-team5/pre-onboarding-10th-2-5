@@ -38,11 +38,25 @@ const Icon = styled(AiOutlineSearch)`
   width: 2rem;
 `;
 
+const SuggestionsContainerOutside = styled.div`
+  position: absolute;
+
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  z-index: 1;
+`;
+
 export const SearchBar = () => {
   const [showSuggestions, setShowSuggestions] = useState(false);
 
   const handleSearchFocus = () => {
     setShowSuggestions(true);
+  };
+
+  const handleOutsideClick = () => {
+    setShowSuggestions(false);
   };
 
   return (
@@ -53,8 +67,11 @@ export const SearchBar = () => {
           <Input />
         </InputWrapper>
         <Button>search</Button>
-        <SearchSuggestions />
+        {showSuggestions && <SearchSuggestions />}
       </Form>
+      {showSuggestions && (
+        <SuggestionsContainerOutside onClick={handleOutsideClick} />
+      )}
     </Container>
   );
 };

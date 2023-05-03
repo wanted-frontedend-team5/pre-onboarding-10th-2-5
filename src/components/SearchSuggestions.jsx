@@ -7,7 +7,7 @@ const SuggestionsContainer = styled.div`
   left: 0;
   width: 100%;
   border-radius: 1.5rem;
-  z-index: 1;
+  z-index: 2;
 
   background-color: white;
 `;

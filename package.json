@@ -65,5 +65,6 @@
   "main": ".eslintrc.js",
   "keywords": [],
   "author": "",
-  "license": "ISC"
+  "license": "ISC",
+  "proxy": "https://api.clinicaltrialskorea.com"
 }

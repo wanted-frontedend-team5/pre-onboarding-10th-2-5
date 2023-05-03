@@ -5,8 +5,6 @@ import { Input } from './common/Input';
 import { Button } from './common/Button';
 import { SearchSuggestions } from './SearchSuggestions';
 
-const Container = styled.div``;
-
 const Form = styled.form`
   position: relative;
   display: flex;
@@ -30,6 +28,7 @@ const InputWrapper = styled.div`
 
   width: 100%;
   height: 100%;
+  z-index: 2;
 `;
 
 const Icon = styled(AiOutlineSearch)`
@@ -50,8 +49,9 @@ const SuggestionsContainerOutside = styled.div`
 
 export const SearchBar = () => {
   const [showSuggestions, setShowSuggestions] = useState(false);
+  const [searchValue, setSearchValue] = useState('');
 
-  const handleSearchFocus = () => {
+  const handleSearchBarClick = () => {
     setShowSuggestions(true);
   };
 
@@ -59,12 +59,17 @@ export const SearchBar = () => {
     setShowSuggestions(false);
   };
 
+  const handleSearchBarChange = e => {
+    const { value } = e.target;
+    setSearchValue(value);
+  };
+
   return (
-    <Container>
+    <>
       <Form>
-        <InputWrapper onClick={handleSearchFocus}>
+        <InputWrapper onClick={handleSearchBarClick}>
           <Icon />
-          <Input />
+          <Input onChange={handleSearchBarChange} value={searchValue} />
         </InputWrapper>
         <Button>search</Button>
         {showSuggestions && <SearchSuggestions />}
@@ -72,6 +77,6 @@ export const SearchBar = () => {
       {showSuggestions && (
         <SuggestionsContainerOutside onClick={handleOutsideClick} />
       )}
-    </Container>
+    </>
   );
 };

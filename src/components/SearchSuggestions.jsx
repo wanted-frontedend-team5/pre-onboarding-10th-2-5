@@ -15,10 +15,9 @@ const SuggestionsContainer = styled.div`
 export const SearchSuggestions = () => {
   return (
     <SuggestionsContainer>
-      <div>adfasd</div>
-      <div>adfasd</div>
-      <div>adfasd</div>
-      <div>adfasd</div>
+      <div>adf</div>
+      <div>adf</div>
+      <div>adf</div>
     </SuggestionsContainer>
   );
 };

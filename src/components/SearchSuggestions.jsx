@@ -1,7 +1,7 @@
 import styled from 'styled-components';
 
 import { theme } from 'theme';
-import { SuggestionItem } from './SuggestionItem';
+import { SuggestionList } from './SuggestionList';
 
 const SuggestionsContainer = styled.div`
   position: absolute;
@@ -35,15 +35,7 @@ export const SearchSuggestions = ({ suggestions }) => {
     <SuggestionsContainer>
       <SuggestionListContainer>
         <Title>추천 검색어</Title>
-        <ul>
-          {suggestions.length ? (
-            suggestions.map(suggestion => (
-              <SuggestionItem id={suggestion.id} name={suggestion.name} />
-            ))
-          ) : (
-            <Title>검색어 없음</Title>
-          )}
-        </ul>
+        <SuggestionList suggestions={suggestions} />
       </SuggestionListContainer>
     </SuggestionsContainer>
   );

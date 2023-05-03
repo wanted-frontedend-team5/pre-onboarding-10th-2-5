@@ -56,15 +56,7 @@ export const SearchBar = () => {
 
   const EXPIRE_TIME = 60 * 60 * 1000;
 
-  const handleSearchBarClick = () => {
-    setShowSuggestions(true);
-  };
-
-  const handleOutsideClick = () => {
-    setShowSuggestions(false);
-  };
-
-  const getSuggestionItems = async value => {
+  const getSuggestionItemsWithCache = async value => {
     const cachedData = localStorage.getItem(value);
     const currentTime = new Date().getTime();
 
@@ -101,11 +93,18 @@ export const SearchBar = () => {
     setTimerId(newTimerId);
   };
 
+  const handleSearchBarClick = () => {
+    setShowSuggestions(true);
+  };
+
+  const handleOutsideClick = () => {
+    setShowSuggestions(false);
+  };
+
   const handleSearchBarChange = e => {
     const { value } = e.target;
     setSearchValue(value);
-
-    debounce(value, getSuggestionItems);
+    debounce(value, getSuggestionItemsWithCache);
   };
 
   return (

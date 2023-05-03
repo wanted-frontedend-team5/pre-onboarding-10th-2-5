@@ -6,13 +6,13 @@ export const notSearchableStorage = {
     const res = JSON.parse(localStorage.getItem(notSearchable));
     return res;
   },
-  put: list => {
-    const prevList = notSearchableStorage.get();
-    if (!prevList) {
-      localStorage.setItem(notSearchable, JSON.stringify([list]));
+  put: keyword => {
+    const keywordArray = notSearchableStorage.get();
+    if (!keywordArray) {
+      localStorage.setItem(notSearchable, JSON.stringify([keyword]));
     } else {
-      prevList.push(list);
-      localStorage.setItem(notSearchable, JSON.stringify(prevList));
+      if (!keywordArray.includes(keyword)) keywordArray.push(keyword);
+      localStorage.setItem(notSearchable, JSON.stringify(keywordArray));
     }
   },
 };

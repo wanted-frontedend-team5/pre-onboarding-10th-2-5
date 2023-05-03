@@ -30,12 +30,15 @@ const Title = styled.p`
   padding-left: 1.5rem;
 `;
 
-export const SearchSuggestions = ({ suggestions }) => {
+export const SearchSuggestions = ({ suggestions, activeSuggestion }) => {
   return (
     <SuggestionsContainer>
       <SuggestionListContainer>
         <Title>추천 검색어</Title>
-        <SuggestionList suggestions={suggestions} />
+        <SuggestionList
+          suggestions={suggestions}
+          activeSuggestion={activeSuggestion}
+        />
       </SuggestionListContainer>
     </SuggestionsContainer>
   );

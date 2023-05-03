@@ -7,12 +7,17 @@ const SuggestionItemState = styled.p`
   font-size: ${theme.sm};
   text-align: center;
 `;
-export const SuggestionList = ({ suggestions }) => {
+export const SuggestionList = ({ suggestions, activeSuggestion }) => {
   return (
     <ul>
       {suggestions.length ? (
-        suggestions.map(suggestion => (
-          <SuggestionItem id={suggestion.id} name={suggestion.name} />
+        suggestions.map((suggestion, index) => (
+          <SuggestionItem
+            id={suggestion.id}
+            name={suggestion.name}
+            activeSuggestion={activeSuggestion}
+            index={index}
+          />
         ))
       ) : (
         <SuggestionItemState>검색어 없음</SuggestionItemState>

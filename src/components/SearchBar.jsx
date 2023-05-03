@@ -53,6 +53,7 @@ export const SearchBar = () => {
   const [searchValue, setSearchValue] = useState('');
   const [suggestions, setSuggestions] = useState([]);
   const [timerId, setTimerId] = useState(0);
+  const [activeSuggestion, setActiveSuggestion] = useState(0);
 
   const EXPIRE_TIME = 60 * 60 * 1000;
 
@@ -67,6 +68,7 @@ export const SearchBar = () => {
         return;
       }
     }
+
     try {
       const response = await fetchSuggestionItems(value);
       const { data } = response;
@@ -107,15 +109,37 @@ export const SearchBar = () => {
     debounce(value, getSuggestionItemsWithCache);
   };
 
+  const onKeyDown = e => {
+    if (e.key === 'Enter') {
+      setSearchValue(suggestions[activeSuggestion].name);
+      setShowSuggestions(false);
+    } else if (e.key === 'ArrowUp') {
+      if (activeSuggestion === 0) {
+        return setActiveSuggestion(suggestions.length - 1);
+      }
+      setActiveSuggestion(activeSuggestion - 1);
+    } else if (e.key === 'ArrowDown') {
+      if (activeSuggestion === suggestions.length - 1) {
+        return setActiveSuggestion(0);
+      }
+      setActiveSuggestion(activeSuggestion + 1);
+    }
+  };
+
   return (
     <>
       <Form>
-        <InputWrapper onClick={handleSearchBarClick}>
+        <InputWrapper onClick={handleSearchBarClick} onKeyDown={onKeyDown}>
           <Icon />
           <Input onChange={handleSearchBarChange} value={searchValue} />
         </InputWrapper>
         <Button>search</Button>
-        {showSuggestions && <SearchSuggestions suggestions={suggestions} />}
+        {showSuggestions && (
+          <SearchSuggestions
+            suggestions={suggestions}
+            activeSuggestion={activeSuggestion}
+          />
+        )}
       </Form>
       {showSuggestions && (
         <SuggestionsContainerOutside onClick={handleOutsideClick} />

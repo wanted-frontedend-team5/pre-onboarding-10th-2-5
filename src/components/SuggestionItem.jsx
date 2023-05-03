@@ -14,11 +14,13 @@ const StyleSuggestionItem = styled.li`
   :hover {
     background-color: ${theme.hoverColor};
   }
+
+  ${({ isActive }) => isActive && `background-color: ${theme.hoverColor};`}
 `;
 
-export const SuggestionItem = ({ id, name }) => {
+export const SuggestionItem = ({ id, name, activeSuggestion, index }) => {
   return (
-    <StyleSuggestionItem key={id}>
+    <StyleSuggestionItem key={id} isActive={index === activeSuggestion}>
       <Icon />
       {name}
     </StyleSuggestionItem>

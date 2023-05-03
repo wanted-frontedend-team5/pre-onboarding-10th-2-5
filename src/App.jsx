@@ -1,3 +1,4 @@
+import { Title } from 'components/Title';
 import { AppLayout } from 'components/layouts/AppLayout';
 
 export const App = () => {
@@ -5,7 +6,11 @@ export const App = () => {
 
   return (
     <AppLayout>
-      <h1>국내 모든 임상시험 검색하고 온라인으로 참여하기</h1>
+      <Title>
+        국내 모든 임상시험 검색하고
+        <br />
+        온라인으로 참여하기
+      </Title>
     </AppLayout>
   );
 };

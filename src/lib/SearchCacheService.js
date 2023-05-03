@@ -1,5 +1,7 @@
 import { searchCacheStorage } from 'utils/searchLocalUtils';
 
+// const SEARCH_EXPIRE_TIME = 100000;
+
 export const SearchCacheService = {
   checkKeyword(keyword) {
     const cacheArray = searchCacheStorage.get();
@@ -16,7 +18,7 @@ export const SearchCacheService = {
     searchCacheStorage.put({
       keyword,
       data,
-      inputTime: new Date().getMilliseconds(),
+      inputTime: new Date(),
     });
   },
 

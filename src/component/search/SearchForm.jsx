@@ -1,8 +1,6 @@
-import { useCallback, useEffect, useState } from 'react';
-import { SearchCacheService } from 'lib/SearchCacheService';
+import { useCallback, useState } from 'react';
 import { SEARCH } from 'constant/search/search';
-import { STATUS_CODE } from 'constant/api/statusCode';
-import { getSearchResList } from 'api/search';
+import { getChangeKeywordList } from 'handler/searchCacheHandler';
 import { SearchedItemList } from './SearchedItemList';
 import {
   InputBox,
@@ -17,32 +15,18 @@ export const SearchForm = () => {
   const [isLoading, setLoading] = useState(false);
   const [isShowList, setShow] = useState(false);
 
-  const getChangeKeywordList = async keyword => {
-    const cacheCheck = SearchCacheService.checkKeyword(keyword);
-
-    if (cacheCheck) {
-      setKeywordList(cacheCheck.data);
-      return;
-    }
-
-    const res = await getSearchResList(keyword);
-    if (res.status === STATUS_CODE.SEARCH_SUCCESS) {
-      if (res.data.length > 0) {
-        setKeywordList(res.data);
-      }
-    }
-  };
-
   const onChangeSearchInput = async e => {
     e.preventDefault();
     const inputKeyword = e.target.value;
     setKeyword(inputKeyword);
-
-    if (inputKeyword.length > 0) {
-      setLoading(true);
-      await getChangeKeywordList(inputKeyword);
-      setLoading(false);
-    } else setKeywordList([]);
+    if (inputKeyword.length === 0) {
+      setKeywordList([]);
+      return;
+    }
+    setLoading(true);
+    const data = await getChangeKeywordList(inputKeyword);
+    if (data) setKeywordList(data);
+    setLoading(false);
   };
 
   const onSubmitHandler = e => {
@@ -60,11 +44,6 @@ export const SearchForm = () => {
   const setKeywordHandler = useCallback(value => {
     setKeyword(value);
   }, []);
-
-  useEffect(() => {
-    if (keyWordList.length > 0)
-      SearchCacheService.putDataCache(curKeyword, keyWordList);
-  }, [curKeyword, keyWordList]);
 
   return (
     <>

@@ -8,9 +8,9 @@ import {
   SearchIcon,
 } from './styles';
 
-function SearchInput({ onChange, onFocus }, ref) {
+function SearchInput({ onChange, onFocus, onClickOutSiede }, ref) {
   return (
-    <Container>
+    <Container ref={onClickOutSiede}>
       <InputWrapper>
         <Input>
           <label htmlFor="searchBar">

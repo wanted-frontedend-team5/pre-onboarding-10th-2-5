@@ -5,12 +5,14 @@ import { getSearchRecommend } from 'api/search';
 import Title from 'components/Title';
 import SearchInput from 'components/SearchInput';
 import Recommend from 'components/Recommend';
+import useOutSideRef from 'hooks/useOutSideRef';
 
 const App = () => {
-  const inputRef = useRef(null);
   const [query, setQuery] = useState('');
   const [data, setData] = useState([]);
   const [searchFocus, setSearchFocus] = useState(false);
+  const inputRef = useRef(null);
+  const outSideRef = useOutSideRef(setSearchFocus);
 
   const handleChangeValue = async e => {
     setQuery(e.target.value);
@@ -28,10 +30,6 @@ const App = () => {
     return () => clearTimeout(timer);
   }, [query]);
 
-  useEffect(() => {
-    console.log('inputRef:', inputRef); // inputRef: {current: <input type="text">}
-  }, []);
-
   return (
     <div>
       <GlobalStyle />
@@ -42,6 +40,7 @@ const App = () => {
             ref={inputRef}
             onChange={handleChangeValue}
             onFocus={handleFocus}
+            onClickOutSiede={outSideRef}
           />
           <Recommend list={data} searched={query !== ''} active={searchFocus} />
         </SearchWrapper>

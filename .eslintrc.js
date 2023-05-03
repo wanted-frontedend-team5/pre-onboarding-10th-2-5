@@ -17,6 +17,7 @@ module.exports = {
   },
   plugins: ['react'],
   rules: {
+    'react/jsx-props-no-spreading': 0,
     // for enabling the rule. 0=off, 1=warn, 2=error. Defaults to 0.
     'object-curly-newline': 'off',
     'linebreak-style': 0,

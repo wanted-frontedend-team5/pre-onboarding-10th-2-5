@@ -1,26 +1,17 @@
-import { searchConditionsApi } from 'apis/searchConditions';
 import { useClickOutside } from 'hooks/useClickOutside';
 import { useInput } from 'hooks/useInput';
-import { useState } from 'react';
 import { Recommendation } from './Recommendation';
+import { useDebounceRecommend } from './SearchBar.hooks';
 import * as Styled from './SearchBar.styles';
 
 export const SearchBar = () => {
-  const [recommendations, setRecommendations] = useState([]);
-
-  const keywordInput = useInput('');
   const { ref, isVisible, setIsVisible } = useClickOutside();
+  const keywordInput = useInput('');
+  const { recommendations } = useDebounceRecommend(keywordInput.value);
 
   const handleSearch = keyword => {
     alert(keyword);
     setIsVisible(false);
-  };
-
-  const fetchRecommendations = async () => {
-    const recommendationList = await searchConditionsApi.getCondition(
-      keywordInput.value,
-    );
-    setRecommendations(recommendationList);
   };
 
   return (

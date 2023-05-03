@@ -1,3 +1,4 @@
+import { SEARCH } from 'constant/search/message';
 import { SearchedItem } from './SearchedItem';
 
 export const SearchedItemList = ({ isLoading, curkeyword, keywordList }) => {
@@ -6,7 +7,7 @@ export const SearchedItemList = ({ isLoading, curkeyword, keywordList }) => {
       <ul>
         <SearchedItem name={curkeyword} />
         <hr />
-        <SearchedItem name="로딩중" />
+        <SearchedItem name={SEARCH.STATUS.LODING} />
       </ul>
     );
   }
@@ -15,8 +16,8 @@ export const SearchedItemList = ({ isLoading, curkeyword, keywordList }) => {
     return (
       <ul>
         <SearchedItem name={curkeyword} />
-        <p>추천검색어</p>
-        <SearchedItem name="검색어 없음" />
+        <p>{SEARCH.RECOMMAND_KEYWORD}</p>
+        <SearchedItem name={SEARCH.STATUS.KEYWORD_NONE} />
       </ul>
     );
   }
@@ -24,7 +25,7 @@ export const SearchedItemList = ({ isLoading, curkeyword, keywordList }) => {
   return (
     <ul>
       <SearchedItem name={curkeyword} />
-      <p>추천검색어</p>
+      <p>{SEARCH.RECOMMAND_KEYWORD}</p>
       {keywordList.map(keyword => (
         <SearchedItem key={keyword.id} name={keyword.name} />
       ))}

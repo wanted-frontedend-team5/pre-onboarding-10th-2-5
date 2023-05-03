@@ -51,6 +51,8 @@ const SuggestionsContainerOutside = styled.div`
 export const SearchBar = () => {
   const [showSuggestions, setShowSuggestions] = useState(false);
   const [searchValue, setSearchValue] = useState('');
+  const [suggestions, setSuggestions] = useState([]);
+  const [timerId, setTimerId] = useState(0);
 
   const handleSearchBarClick = () => {
     setShowSuggestions(true);
@@ -63,8 +65,22 @@ export const SearchBar = () => {
   const handleSearchBarChange = async e => {
     const { value } = e.target;
     setSearchValue(value);
-    const ref = await fetchSuggestionItems(value);
-    console.log(ref.data);
+
+    if (timerId) {
+      clearTimeout(timerId);
+    }
+
+    const newTimerId = setTimeout(async () => {
+      try {
+        const ref = await fetchSuggestionItems(value);
+        setSuggestions(ref.data);
+        console.log('calling api');
+      } catch (error) {
+        console.error(error);
+      }
+    }, 800);
+
+    setTimerId(newTimerId);
   };
 
   return (
@@ -75,7 +91,7 @@ export const SearchBar = () => {
           <Input onChange={handleSearchBarChange} value={searchValue} />
         </InputWrapper>
         <Button>search</Button>
-        {showSuggestions && <SearchSuggestions />}
+        {showSuggestions && <SearchSuggestions suggestions={suggestions} />}
       </Form>
       {showSuggestions && (
         <SuggestionsContainerOutside onClick={handleOutsideClick} />

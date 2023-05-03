@@ -43,16 +43,18 @@ const Icon = styled(AiOutlineSearch)`
   margin-right: 0.5rem;
 `;
 
-export const SearchSuggestions = () => {
+export const SearchSuggestions = ({ suggestions }) => {
   return (
     <SuggestionsContainer>
       <SuggestionListContainer>
         <Title>추천 검색어</Title>
         <ul>
-          <SuggestionItem>
-            <Icon />
-            adf
-          </SuggestionItem>
+          {suggestions.map(suggestion => (
+            <SuggestionItem key={suggestion.id}>
+              <Icon />
+              {suggestion.name}
+            </SuggestionItem>
+          ))}
         </ul>
       </SuggestionListContainer>
     </SuggestionsContainer>

@@ -49,9 +49,7 @@ table {
 }
 button {
   all: unset;
-}
-input {
-	all: unset;
+	cursor: pointer;
 }
 `;
 

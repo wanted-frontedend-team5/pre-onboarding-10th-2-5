@@ -1,5 +1,5 @@
+import { useClickOutside } from 'hooks/useClickOutside';
 import { useInput } from 'hooks/useInput';
-import { useState } from 'react';
 import { Recommendation } from './Recommendation';
 import * as Styled from './SearchBar.styles';
 
@@ -71,15 +71,17 @@ const dummy = [
 ];
 
 export const SearchBar = () => {
-  const [isInputFocus, setIsInputFocus] = useState(false);
   const keywordInput = useInput();
+  const { ref, isVisible, setIsVisible } = useClickOutside();
 
   const handleSearch = keyword => {
     alert(keyword);
+    setIsVisible(false);
   };
 
   return (
     <form
+      ref={ref}
       onSubmit={e => {
         e.preventDefault();
         handleSearch(keywordInput.value);
@@ -87,18 +89,14 @@ export const SearchBar = () => {
     >
       <Styled.SearchBar>
         <Styled.SearchIcon />
-        <Styled.Input
-          onFocus={() => setIsInputFocus(true)}
-          onBlur={() => setIsInputFocus(false)}
-          {...keywordInput}
-        />
+        <Styled.Input onFocus={() => setIsVisible(true)} {...keywordInput} />
 
         <Styled.Button>검색</Styled.Button>
       </Styled.SearchBar>
 
       <Styled.RecommendationWrapper>
         <Recommendation
-          isActive
+          isActive={isVisible}
           recommendations={dummy}
           onClick={handleSearch}
         />

@@ -1,10 +1,8 @@
 import axios, { AxiosError } from 'axios';
 import { searchHeader } from 'constant/api/header';
-import { searchURL } from 'constant/api/searchURL';
 import { ENDPOINT } from 'constant/api/endpoint';
 
 const searchInstance = axios.create({
-  baseURL: searchURL,
   headers: searchHeader,
 });
 

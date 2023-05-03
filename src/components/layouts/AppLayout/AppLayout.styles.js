@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 import { APP_MAX_WIDTH } from 'styles/constants/dimensions';
-import { flex } from 'styles/utils/flex';
+import { flex } from 'styles/utils';
 
 export const AppLayout = styled.div`
   ${flex({ justifyContent: 'center' })}

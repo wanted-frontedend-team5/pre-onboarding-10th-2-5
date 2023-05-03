@@ -1,8 +1,7 @@
 import { AiOutlineSearch } from 'react-icons/ai';
 import styled from 'styled-components';
 import { colors } from 'styles/constants/colors';
-import { flex } from 'styles/utils/flex';
-import { textStyle } from 'styles/utils/textStyle';
+import { flex, textStyle } from 'styles/utils';
 import { recommendationSizes } from '../Recommendation.constants';
 
 export const List = styled.ul`

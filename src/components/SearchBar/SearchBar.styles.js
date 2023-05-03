@@ -1,9 +1,7 @@
 import { AiOutlineSearch } from 'react-icons/ai';
 import styled from 'styled-components';
 import { colors } from 'styles/constants/colors';
-import { flex } from 'styles/utils/flex';
-import { position } from 'styles/utils/position';
-import { textStyle } from 'styles/utils/textStyle';
+import { flex, position, textStyle } from 'styles/utils';
 
 const sizes = {
   radius: 42,

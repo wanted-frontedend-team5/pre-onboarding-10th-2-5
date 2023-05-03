@@ -1,7 +1,6 @@
 import styled from 'styled-components';
 import { colors } from 'styles/constants/colors';
-import { position } from 'styles/utils/position';
-import { textStyle } from 'styles/utils/textStyle';
+import { position, textStyle } from 'styles/utils';
 import { recommendationSizes } from './Recommendation.constants';
 
 export const Recommendation = styled.div`

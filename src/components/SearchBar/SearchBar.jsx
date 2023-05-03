@@ -1,9 +1,10 @@
 import * as Styled from './SearchBar.styles';
 
-export const SearchBar = ({ value }) => {
+export const SearchBar = () => {
   return (
     <Styled.SearchBar>
-      <Styled.Input value={value} />
+      <Styled.SearchIcon />
+      <Styled.Input />
 
       <Styled.Button>검색</Styled.Button>
     </Styled.SearchBar>

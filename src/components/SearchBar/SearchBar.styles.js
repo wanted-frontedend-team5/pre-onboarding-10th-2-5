@@ -1,23 +1,34 @@
+import { AiOutlineSearch } from 'react-icons/ai';
 import styled from 'styled-components';
 import { colors } from 'styles/constants/colors';
 import { flex } from 'styles/utils/flex';
+import { position } from 'styles/utils/position';
 import { textStyle } from 'styles/utils/textStyle';
 
-const BORDER_RADIUS = 42;
+const sizes = {
+  radius: 42,
+  inputPaddingX: 20,
+  inputPaddingY: 12,
+  icon: 21,
+};
 
 export const SearchBar = styled.form`
   ${flex()}
+  position: relative;
   height: 50px;
 `;
 
 export const Input = styled.input`
   width: 100%;
 
-  padding: 12px 20px;
+  padding: ${sizes.inputPaddingY}px ${sizes.inputPaddingX}px;
+  padding-left: ${sizes.inputPaddingX + sizes.icon + 8}px;
 
-  border-radius: ${BORDER_RADIUS}px;
+  border-radius: ${sizes.radius}px;
   border-top-right-radius: 0;
   border-bottom-right-radius: 0;
+
+  ${textStyle(16)}
 
   background-color: ${colors.white};
 `;
@@ -26,7 +37,7 @@ export const Button = styled.button`
   ${flex.center()}
   width: 96px;
 
-  border-radius: ${BORDER_RADIUS}px;
+  border-radius: ${sizes.radius}px;
   border-top-left-radius: 0;
   border-bottom-left-radius: 0;
 
@@ -36,4 +47,10 @@ export const Button = styled.button`
   color: ${colors.white};
 
   background-color: ${colors.blue};
+`;
+
+export const SearchIcon = styled(AiOutlineSearch)`
+  ${position.posCenterY({ left: `${sizes.inputPaddingX}px` })};
+
+  font-size: ${sizes.icon}px;
 `;

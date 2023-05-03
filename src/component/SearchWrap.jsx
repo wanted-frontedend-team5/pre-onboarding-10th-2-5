@@ -19,10 +19,15 @@ export const SearchWrap = () => {
 
   useEffect(() => {
     const debounce = setTimeout(async () => {
-      if (inputValue) {
+      const inputValueCache = localStorage.getItem(inputValue);
+      if (inputValue && !inputValueCache) {
         const newList = await getRecommendData(inputValue);
         setRecommendList(newList);
-        // eslint-disable-next-line no-console
+        localStorage.setItem(inputValue, JSON.stringify(newList));
+      }
+
+      if (inputValueCache) {
+        setRecommendList(JSON.parse(inputValueCache));
       }
     }, 300);
     return () => {

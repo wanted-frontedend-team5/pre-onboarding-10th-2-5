@@ -5,11 +5,7 @@ export const RecommendationList = ({ recommendations, onClick }) => {
     <Styled.List>
       {recommendations.map(recommend => (
         <li key={recommend.id}>
-          <Styled.Button
-            key={recommend.id}
-            type="button"
-            onClick={() => onClick(recommend.name)}
-          >
+          <Styled.Button type="button" onClick={() => onClick(recommend.name)}>
             <Styled.SearchIcon />
 
             {recommend.name}

@@ -1,11 +1,14 @@
 import styled from 'styled-components';
 import { AiOutlineSearch } from 'react-icons/ai';
+import { useState } from 'react';
 import { Input } from './common/Input';
 import { Button } from './common/Button';
+import { SearchSuggestions } from './SearchSuggestions';
 
 const Container = styled.div``;
 
 const Form = styled.form`
+  position: relative;
   display: flex;
   align-items: center;
 
@@ -21,20 +24,36 @@ const Form = styled.form`
   }
 `;
 
-const Icon = styled(AiOutlineSearch)`
+const InputWrapper = styled.div`
   display: flex;
+  align-items: center;
+
+  width: 100%;
+  height: 100%;
+`;
+
+const Icon = styled(AiOutlineSearch)`
   margin: 0 0.8rem;
   height: 2rem;
   width: 2rem;
 `;
 
 export const SearchBar = () => {
+  const [showSuggestions, setShowSuggestions] = useState(false);
+
+  const handleSearchFocus = () => {
+    setShowSuggestions(true);
+  };
+
   return (
     <Container>
       <Form>
-        <Icon />
-        <Input />
+        <InputWrapper onClick={handleSearchFocus}>
+          <Icon />
+          <Input />
+        </InputWrapper>
         <Button>search</Button>
+        <SearchSuggestions />
       </Form>
     </Container>
   );

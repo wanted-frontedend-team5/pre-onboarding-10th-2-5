@@ -2,7 +2,9 @@ import styled from 'styled-components';
 import { Input } from './common/Input';
 import { Button } from './common/Button';
 
-const Container = styled.div`
+const Container = styled.div``;
+
+const Form = styled.form`
   display: flex;
   align-items: center;
 `;
@@ -10,9 +12,11 @@ const Container = styled.div`
 export const SearchBar = () => {
   return (
     <Container>
-      <div>icon</div>
-      <Input />
-      <Button>search</Button>
+      <Form>
+        <div>icon</div>
+        <Input />
+        <Button>search</Button>
+      </Form>
     </Container>
   );
 };

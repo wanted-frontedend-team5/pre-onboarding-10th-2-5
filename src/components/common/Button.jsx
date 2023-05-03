@@ -1,7 +1,7 @@
 import styled from 'styled-components';
 import { theme } from 'theme';
 
-const Container = styled.div`
+const Container = styled.button`
   background-color: ${theme.pointColor};
   color: white;
   height: 2rem;

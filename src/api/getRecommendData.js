@@ -10,6 +10,8 @@ export const getRecommendData = async KeywordInput => {
         name: KeywordInput,
       },
     });
+    // eslint-disable-next-line no-console
+    console.info('calling api');
     return response.data;
   } catch (error) {
     if (error instanceof AxiosError) {

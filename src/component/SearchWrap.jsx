@@ -1,5 +1,11 @@
 import { getRecommendData } from 'api/getRecommendData';
-import { Button, Input, KeywordRecommendWindow } from 'component/';
+
+import {
+  Button,
+  Input,
+  RecommendUnit,
+  KeywordRecommendWindow,
+} from 'component/';
 import { useEffect, useState } from 'react';
 
 export const SearchWrap = () => {
@@ -18,7 +24,7 @@ export const SearchWrap = () => {
         setRecommendList(newList);
         // eslint-disable-next-line no-console
       }
-    }, 200);
+    }, 300);
     return () => {
       clearTimeout(debounce);
     };
@@ -40,7 +46,9 @@ export const SearchWrap = () => {
       </form>
       <KeywordRecommendWindow>
         {inputValue
-          ? recommendList.map(item => <li key={item.id}>{item.name}</li>)
+          ? recommendList.map(item => (
+              <RecommendUnit key={item.id}>{item.name}</RecommendUnit>
+            ))
           : null}
       </KeywordRecommendWindow>
     </>

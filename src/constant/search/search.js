@@ -4,6 +4,7 @@ export const SEARCH = {
       LOADING: '로딩중',
       KEYWORD_NONE: '검색어 없음',
     },
+    START_SEARCH: '검색어를 입력하세요!',
   },
   HEADER: '국내 모든 임상시험 검색하고 온라인으로 참여하기',
   INPUT_HEADER: '검색 하기',

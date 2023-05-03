@@ -73,7 +73,7 @@ export const SearchedListBox = styled.div`
   height: auto;
   margin: 10px;
   padding: 14px;
-  diplay: relative;
+  display: relative;
 `;
 
 export const SearchDes = styled.span`

@@ -14,10 +14,16 @@ export const SearchedItemList = ({ isLoading, curkeyword, keywordList }) => {
   }
 
   if (keywordList.length === 0) {
+    if (curkeyword.length === 0) {
+      return <SearchDes>{SEARCH.MESSAGE.START_SEARCH}</SearchDes>;
+    }
+
     return (
-      <ul>
-        <SearchedItem name={SEARCH.MESSAGE.STATUS.KEYWORD_NONE} />
-      </ul>
+      <ListBox>
+        <SearchedItem name={curkeyword} />
+        <hr />
+        <SearchDes>{SEARCH.MESSAGE.STATUS.KEYWORD_NONE}</SearchDes>
+      </ListBox>
     );
   }
 

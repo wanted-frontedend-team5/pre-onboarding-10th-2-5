@@ -5,12 +5,11 @@ import { recommendationSizes } from './Recommendation.constants';
 
 export const Container = styled.div`
   position: relative;
+  display: ${({ isActive }) => (isActive ? 'block' : 'none')};
 `;
 
 export const Recommendation = styled.div`
   ${position.absolute({ top: '8px' })}
-
-  display: ${({ isActive }) => (isActive ? 'block' : 'none')};
 
   width: 100%;
 

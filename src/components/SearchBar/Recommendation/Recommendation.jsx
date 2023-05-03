@@ -3,8 +3,8 @@ import { RecommendationList } from './RecommendationList';
 
 export const Recommendation = ({ isActive, recommendations = [], onClick }) => {
   return (
-    <Styled.Container>
-      <Styled.Recommendation isActive={isActive}>
+    <Styled.Container isActive={isActive}>
+      <Styled.Recommendation>
         <Styled.Title>추천 검색어</Styled.Title>
 
         {recommendations.length === 0 && (

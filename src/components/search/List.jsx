@@ -1,13 +1,11 @@
 import styled from 'styled-components';
 
-export const List = ({ inputValue, data }) => {
-  console.log(data);
-  console.log(inputValue);
+export const List = ({ data }) => {
   return (
     <Wrapper>
       <div>추천 검색어</div>
       {data && data.length > 0 ? (
-        data.map((item, index) => {
+        data.map(item => {
           const { id } = item;
           return (
             <div key={id}>

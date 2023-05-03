@@ -1,10 +1,10 @@
 import styled from 'styled-components';
 import { useState, useEffect } from 'react';
-import { getList } from '../api/api';
+import { getList, ONE_MINUTE } from '../api/api';
 import { List } from './List';
 
 export const Search = () => {
-  const [inputValue, setInputValue] = useState('암');
+  const [inputValue, setInputValue] = useState('');
   const [userList, setUserList] = useState('');
 
   useEffect(() => {
@@ -15,6 +15,10 @@ export const Search = () => {
     getUserList();
     console.info('calling api');
   }, [inputValue]);
+
+  useEffect(() => {
+    if (Date.now() > ONE_MINUTE) localStorage.removeItem('value');
+  }, []);
 
   return (
     <SearchLayout>
@@ -28,7 +32,7 @@ export const Search = () => {
           />
           <Button>검색</Button>
         </ElBox>
-        <List data={userList} inputValue={inputValue} />
+        <List data={userList} />
       </Wrapper>
     </SearchLayout>
   );

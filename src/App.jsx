@@ -24,7 +24,7 @@ const App = () => {
 
     const timer = setTimeout(async () => {
       const res = await getSearchRecommend(query);
-      setData(res.data);
+      setData(res);
     }, 200);
 
     return () => clearTimeout(timer);

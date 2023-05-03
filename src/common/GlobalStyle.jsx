@@ -82,11 +82,12 @@ time,
 mark,
 audio,
 video {
+  font-family: 'Roboto', sans-serif;
   margin: 0;
   padding: 0;
   border: 0;
-  vertical-align: baseline;
-  font-size: 4px;
+  vertical-align: inherit;
+  font-size: 24px;
 }
 article,
 aside,

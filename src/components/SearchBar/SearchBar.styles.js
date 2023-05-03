@@ -12,7 +12,7 @@ const sizes = {
   icon: 21,
 };
 
-export const SearchBar = styled.form`
+export const SearchBar = styled.div`
   ${flex()}
   position: relative;
   height: 50px;
@@ -47,10 +47,18 @@ export const Button = styled.button`
   color: ${colors.white};
 
   background-color: ${colors.blue};
+
+  &:focus {
+    outline: -webkit-focus-ring-color auto 1px;
+  }
 `;
 
 export const SearchIcon = styled(AiOutlineSearch)`
   ${position.posCenterY({ left: `${sizes.inputPaddingX}px` })};
 
   font-size: ${sizes.icon}px;
+`;
+
+export const RecommendationWrapper = styled.div`
+  position: relative;
 `;

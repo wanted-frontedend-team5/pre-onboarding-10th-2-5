@@ -1,4 +1,21 @@
 const cachesName = 'SearchKeyword';
+const notSearchable = 'NotSearchable';
+
+export const notSearchableStorage = {
+  get: () => {
+    const res = JSON.parse(localStorage.getItem(notSearchable));
+    return res;
+  },
+  put: list => {
+    const prevList = notSearchableStorage.get();
+    if (!prevList) {
+      localStorage.setItem(notSearchable, JSON.stringify([list]));
+    } else {
+      prevList.push(list);
+      localStorage.setItem(notSearchable, JSON.stringify(prevList));
+    }
+  },
+};
 
 export const searchCacheStorage = {
   get: () => {

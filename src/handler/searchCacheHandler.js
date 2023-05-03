@@ -4,7 +4,9 @@ import { SearchCacheService } from 'lib/SearchCacheService';
 
 export const getChangeKeywordList = async keyword => {
   const cacheCheck = SearchCacheService.checkKeyword(keyword);
-  if (cacheCheck) return cacheCheck.data;
+  if (cacheCheck.result === 'success') return cacheCheck.data;
+
+  if (!cacheCheck.reFetch) return [];
 
   const res = await getSearchResList(keyword);
   if (res.status === STATUS_CODE.SEARCH_SUCCESS) {
@@ -12,6 +14,8 @@ export const getChangeKeywordList = async keyword => {
       SearchCacheService.putDataCache(keyword, res.data);
       return res.data;
     }
+    SearchCacheService.putNotSearchableKeyword(keyword);
+    return [];
   }
   return null;
 };

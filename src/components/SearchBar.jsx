@@ -64,6 +64,7 @@ export const SearchBar = () => {
     const { value } = e.target;
     setSearchValue(value);
     const ref = await fetchSuggestionItems(value);
+    console.log(ref.data);
   };
 
   return (

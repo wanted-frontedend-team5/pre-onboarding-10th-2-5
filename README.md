@@ -11,8 +11,8 @@
 - eslint
 - prettier
 - husky
-    - commit
-    - push
+  - commit
+  - push
 - lint-staged
 
 ```tsx

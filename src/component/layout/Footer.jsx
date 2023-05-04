@@ -16,7 +16,7 @@ const StyeldBody = styled.div`
   padding-bottom: 40px;
 `;
 
-export const Foorter = () => {
+export const Footer = () => {
   return (
     <>
       <StyeldBody />

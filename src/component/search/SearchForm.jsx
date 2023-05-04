@@ -1,6 +1,7 @@
-import { useCallback, useState } from 'react';
+import { useEffect, useState } from 'react';
 import { SEARCH } from 'constant/search/search';
 import { getChangeKeywordList } from 'handler/searchCacheHandler';
+import { useInput } from 'hooks/useInput';
 import { SearchedItemList } from './SearchedItemList';
 import {
   InputBox,
@@ -10,24 +11,25 @@ import {
 } from './style/SearchStyle';
 
 export const SearchForm = () => {
-  const [curKeyword, setKeyword] = useState('');
+  const [keyword, onChange] = useInput('');
   const [keyWordList, setKeywordList] = useState([]);
   const [isLoading, setLoading] = useState(false);
   const [isShowList, setShow] = useState(false);
 
-  const onChangeSearchInput = async e => {
-    e.preventDefault();
-    const inputKeyword = e.target.value;
-    setKeyword(inputKeyword);
-    if (inputKeyword.length === 0) {
-      setKeywordList([]);
-      return;
-    }
-    setLoading(true);
-    const data = await getChangeKeywordList(inputKeyword);
-    if (data) setKeywordList(data);
-    setLoading(false);
-  };
+  useEffect(() => {
+    const checkKeyword = async () => {
+      if (keyword.length === 0) {
+        setKeywordList([]);
+        return;
+      }
+      setLoading(true);
+      const data = await getChangeKeywordList(keyword);
+      if (data) setKeywordList(data);
+      setLoading(false);
+    };
+
+    checkKeyword();
+  }, [keyword]);
 
   const onSubmitHandler = e => {
     e.preventDefault();
@@ -41,10 +43,6 @@ export const SearchForm = () => {
     setShow(false);
   };
 
-  const setKeywordHandler = useCallback(value => {
-    setKeyword(value);
-  }, []);
-
   return (
     <>
       <form onSubmit={onSubmitHandler}>
@@ -52,8 +50,8 @@ export const SearchForm = () => {
           <SearchInput
             type="text"
             name="search"
-            value={curKeyword}
-            onChange={onChangeSearchInput}
+            value={keyword}
+            onChange={onChange}
             onFocus={onFocusSearchInput}
             onBlur={onBlurSearchInput}
             placeholder={SEARCH.MESSAGE.INPUT_PLACEHOLDER}
@@ -64,10 +62,9 @@ export const SearchForm = () => {
       {isShowList && (
         <SearchedListBox>
           <SearchedItemList
-            curkeyword={curKeyword}
+            curkeyword={keyword}
             isLoading={isLoading}
             keywordList={keyWordList}
-            setKeyword={setKeywordHandler}
           />
         </SearchedListBox>
       )}

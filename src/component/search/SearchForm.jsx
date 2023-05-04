@@ -17,7 +17,7 @@ export const SearchForm = () => {
   const [isShowList, setShow] = useState(true);
   const [focusIndex, setFocusIndex] = useState(0);
 
-  const SAERCH_LENGTH =
+  const SEARCH_LENGTH =
     keyWordList.length <= SEARCH.MAX_LIST_LENGTH
       ? keyWordList.length
       : SEARCH.MAX_LIST_LENGTH;
@@ -43,20 +43,20 @@ export const SearchForm = () => {
   };
 
   const onKeyDownHandler = event => {
-    const Index = focusIndex;
+    const index = focusIndex;
 
     switch (event.keyCode) {
       case SEARCH.KEY.ENTER:
         if (!keyWordList[focusIndex]) return;
-        setValue(keyWordList[focusIndex].name);
+        setValue(keyWordList[focusIndex % SEARCH_LENGTH].name);
         setShow(false);
         setFocusIndex(0);
         break;
       case SEARCH.KEY.ARROW_DOWN:
-        setFocusIndex(prev => (prev % SAERCH_LENGTH) + 1);
+        setFocusIndex((index + 1) % SEARCH_LENGTH);
         break;
       case SEARCH.KEY.ARROW_UP:
-        setFocusIndex(Index > 1 ? Index - 1 : SAERCH_LENGTH);
+        setFocusIndex(index === 0 ? SEARCH_LENGTH - 1 : index - 1);
         break;
       default:
         break;

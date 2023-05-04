@@ -5,8 +5,8 @@ import { SearchDes, ListBox } from './style/SearchStyle';
 export const SearchedItemList = ({
   isLoading,
   curkeyword,
-  setKeyword,
   keywordList,
+  focusIndex,
 }) => {
   if (isLoading) {
     return (
@@ -36,11 +36,11 @@ export const SearchedItemList = ({
     <ListBox>
       <SearchedItem name={curkeyword} />
       <SearchDes>{SEARCH.RECOMMAND_KEYWORD}</SearchDes>
-      {keywordArraySlice.map(keyword => (
+      {keywordArraySlice.map((keyword, index) => (
         <SearchedItem
+          selected={index + 1 === focusIndex}
           key={keyword.id}
           name={keyword.name}
-          setKeyword={setKeyword}
         />
       ))}
     </ListBox>

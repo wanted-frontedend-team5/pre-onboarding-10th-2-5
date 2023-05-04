@@ -11,10 +11,16 @@ import {
 } from './style/SearchStyle';
 
 export const SearchForm = () => {
-  const [keyword, onChange] = useInput('');
+  const [keyword, onChange, setValue] = useInput('');
   const [keyWordList, setKeywordList] = useState([]);
   const [isLoading, setLoading] = useState(false);
-  const [isShowList, setShow] = useState(false);
+  const [isShowList, setShow] = useState(true);
+  const [focusIndex, setFocusIndex] = useState(0);
+
+  const SAERCH_LENGTH =
+    keyWordList.length <= SEARCH.MAX_LIST_LENGTH
+      ? keyWordList.length
+      : SEARCH.MAX_LIST_LENGTH;
 
   useEffect(() => {
     const checkKeyword = async () => {
@@ -26,6 +32,7 @@ export const SearchForm = () => {
       const data = await getChangeKeywordList(keyword);
       if (data) setKeywordList(data);
       setLoading(false);
+      setFocusIndex(0);
     };
 
     checkKeyword();
@@ -33,6 +40,29 @@ export const SearchForm = () => {
 
   const onSubmitHandler = e => {
     e.preventDefault();
+  };
+
+  const onKeyDownHandler = event => {
+    const Index = focusIndex;
+
+    switch (event.keyCode) {
+      case SEARCH.KEY.ENTER:
+        setValue(keyWordList[focusIndex].name);
+        setShow(false);
+        setFocusIndex(0);
+        break;
+
+      case SEARCH.KEY.ARROW_DOWN:
+        setFocusIndex(prev => (prev % SAERCH_LENGTH) + 1);
+        break;
+
+      case SEARCH.KEY.ARROW_UP:
+        setFocusIndex(Index > 1 ? Index - 1 : SAERCH_LENGTH);
+        break;
+
+      default:
+        break;
+    }
   };
 
   const onFocusSearchInput = () => {
@@ -51,6 +81,7 @@ export const SearchForm = () => {
             type="text"
             name="search"
             value={keyword}
+            onKeyDown={onKeyDownHandler}
             onChange={onChange}
             onFocus={onFocusSearchInput}
             onBlur={onBlurSearchInput}
@@ -65,6 +96,7 @@ export const SearchForm = () => {
             curkeyword={keyword}
             isLoading={isLoading}
             keywordList={keyWordList}
+            focusIndex={focusIndex}
           />
         </SearchedListBox>
       )}

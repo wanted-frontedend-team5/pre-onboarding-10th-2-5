@@ -11,4 +11,9 @@ export const SEARCH = {
   INPUT_PLACEHOLDER: '질환명을 입력해 주세요.',
   RECOMMAND_KEYWORD: '추천 검색어',
   MAX_LIST_LENGTH: 7,
+  KEY: {
+    ENTER: 13,
+    ARROW_UP: 38,
+    ARROW_DOWN: 40,
+  },
 };

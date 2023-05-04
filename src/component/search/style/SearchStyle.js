@@ -93,3 +93,9 @@ export const List = styled.li`
   padding-top: 1px;
   font-size: 16px;
 `;
+
+export const SelectedList = styled.li`
+  padding-top: 1px;
+  font-size: 16px;
+  background-color: #66b2ff;
+`;

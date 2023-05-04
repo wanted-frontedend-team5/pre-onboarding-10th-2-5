@@ -38,7 +38,7 @@ export const SearchedItemList = ({
       <SearchDes>{SEARCH.RECOMMAND_KEYWORD}</SearchDes>
       {keywordArraySlice.map((keyword, index) => (
         <SearchedItem
-          selected={index === focusIndex}
+          selected={index + 1 === focusIndex}
           key={keyword.id}
           name={keyword.name}
         />

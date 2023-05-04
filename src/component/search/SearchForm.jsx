@@ -14,13 +14,13 @@ export const SearchForm = () => {
   const [keyword, onChange, setValue] = useInput('');
   const [keyWordList, setKeywordList] = useState([]);
   const [isLoading, setLoading] = useState(false);
-  const [isShowList, setShow] = useState(true);
+  const [isShowList, setShow] = useState(false);
   const [focusIndex, setFocusIndex] = useState(0);
 
   const SEARCH_LENGTH =
     keyWordList.length <= SEARCH.MAX_LIST_LENGTH
-      ? keyWordList.length
-      : SEARCH.MAX_LIST_LENGTH;
+      ? keyWordList.length + 1
+      : SEARCH.MAX_LIST_LENGTH + 1;
 
   useEffect(() => {
     const checkKeyword = async () => {
@@ -47,23 +47,24 @@ export const SearchForm = () => {
 
     switch (event.keyCode) {
       case SEARCH.KEY.ENTER:
-        if (!keyWordList[focusIndex]) return;
-        setValue(keyWordList[focusIndex % SEARCH_LENGTH].name);
+        if (!keyWordList[focusIndex - 1]) return;
+        setValue(keyWordList[focusIndex - (1 % SEARCH_LENGTH)].name);
         setShow(false);
         setFocusIndex(0);
         break;
       case SEARCH.KEY.ARROW_DOWN:
-        setFocusIndex((index + 1) % SEARCH_LENGTH);
+        setFocusIndex(index < SEARCH_LENGTH - 1 ? index + 1 : 1);
         break;
       case SEARCH.KEY.ARROW_UP:
-        setFocusIndex(index === 0 ? SEARCH_LENGTH - 1 : index - 1);
+        setFocusIndex(index === 1 ? SEARCH_LENGTH - 1 : index - 1);
         break;
       default:
         break;
     }
   };
 
-  const onFocusSearchInput = () => {
+  const onFocusSearchInput = e => {
+    onChange(e);
     setShow(true);
   };
 
@@ -79,8 +80,8 @@ export const SearchForm = () => {
             type="text"
             name="search"
             value={keyword}
+            onChange={onFocusSearchInput}
             onKeyDown={onKeyDownHandler}
-            onChange={onChange}
             onFocus={onFocusSearchInput}
             onBlur={onBlurSearchInput}
             placeholder={SEARCH.MESSAGE.INPUT_PLACEHOLDER}

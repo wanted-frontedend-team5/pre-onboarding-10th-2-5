@@ -47,19 +47,17 @@ export const SearchForm = () => {
 
     switch (event.keyCode) {
       case SEARCH.KEY.ENTER:
+        if (!keyWordList[focusIndex]) return;
         setValue(keyWordList[focusIndex].name);
         setShow(false);
         setFocusIndex(0);
         break;
-
       case SEARCH.KEY.ARROW_DOWN:
         setFocusIndex(prev => (prev % SAERCH_LENGTH) + 1);
         break;
-
       case SEARCH.KEY.ARROW_UP:
         setFocusIndex(Index > 1 ? Index - 1 : SAERCH_LENGTH);
         break;
-
       default:
         break;
     }

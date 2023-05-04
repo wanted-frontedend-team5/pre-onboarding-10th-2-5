@@ -1,7 +1,8 @@
+import { primaryColor } from 'constant';
 import styled from 'styled-components';
 
 export const Wrapper = styled.div`
-  background-color: #cae9ff;
+  background-color: ${primaryColor};
   width: 100%;
   height: 462px;
   text-align: center;

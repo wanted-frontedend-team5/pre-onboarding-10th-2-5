@@ -21,6 +21,8 @@ export const Button = styled.button`
   &:hover {
     background-color: ${colors.grayLight};
   }
+
+  ${({ isActive }) => isActive && `background-color: ${colors.grayLight};`}
 `;
 
 export const SearchIcon = styled(AiOutlineSearch)`

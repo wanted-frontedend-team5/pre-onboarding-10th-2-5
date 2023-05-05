@@ -18,10 +18,6 @@ export const Button = styled.button`
 
   ${textStyle(16)}
 
-  &:hover {
-    background-color: ${colors.grayLight};
-  }
-
   ${({ isActive }) => isActive && `background-color: ${colors.grayLight};`}
 `;
 

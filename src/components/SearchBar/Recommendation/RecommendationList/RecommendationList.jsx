@@ -4,6 +4,7 @@ export const RecommendationList = ({
   recommendations,
   focusIndex,
   onClick,
+  setFocusIndex,
 }) => {
   return (
     <Styled.List>
@@ -18,6 +19,7 @@ export const RecommendationList = ({
               isActive={index + 1 === focusIndex}
               type="button"
               onClick={() => onClick(recommend.name)}
+              onMouseOver={() => setFocusIndex(index + 1)}
             >
               <Styled.SearchIcon />
 

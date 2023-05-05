@@ -6,6 +6,7 @@ export const Recommendation = ({
   recommendations = [],
   onClick,
   focusIndex,
+  setFocusIndex,
 }) => {
   return (
     <Styled.Container isActive={isActive}>
@@ -21,6 +22,7 @@ export const Recommendation = ({
             recommendations={recommendations}
             focusIndex={focusIndex}
             onClick={onClick}
+            setFocusIndex={setFocusIndex}
           />
         )}
       </Styled.Recommendation>

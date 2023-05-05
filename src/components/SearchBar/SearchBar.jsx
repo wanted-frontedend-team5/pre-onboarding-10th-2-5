@@ -48,6 +48,7 @@ export const SearchBar = () => {
         onClick={handleSearch}
         focusIndex={focusIndex}
         recommendations={recommendations}
+        setFocusIndex={setFocusIndex}
       />
     </form>
   );

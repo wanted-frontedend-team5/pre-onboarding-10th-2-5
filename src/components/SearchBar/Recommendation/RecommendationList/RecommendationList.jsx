@@ -8,7 +8,7 @@ export const RecommendationList = ({
 }) => {
   return (
     <Styled.List>
-      {recommendations.map((recommend, index) => {
+      {recommendations?.map((recommend, index) => {
         return (
           <li key={recommend.id}>
             <Styled.Button

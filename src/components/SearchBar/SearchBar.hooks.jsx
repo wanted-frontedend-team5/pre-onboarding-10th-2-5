@@ -16,7 +16,17 @@ export const useDebounceRecommend = keyword => {
       setRecommendations([]);
       return;
     }
-    setRecommendations(recommendationList.slice(0, searchLength.LIST_MAX));
+
+    const slicedRecommendations = recommendationList.slice(
+      0,
+      searchLength.LIST_MAX,
+    );
+
+    setRecommendations(slicedRecommendations);
+
+    if (!slicedRecommendations) return;
+
+    setRecommendations(slicedRecommendations);
   }, [keyword]);
 
   useDebounce(fetchRecommendations, RECOMMENDATION_DELAY);

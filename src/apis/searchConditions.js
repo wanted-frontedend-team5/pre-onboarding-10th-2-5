@@ -14,12 +14,14 @@ export const searchConditionsApi = {
         params: { name: keyword },
       });
 
+      // eslint-disable-next-line no-console
       console.info('calling api');
 
       const responseData = response.data;
       setCachedData(cacheKey, responseData);
       return responseData;
     } catch (error) {
+      // eslint-disable-next-line no-console
       console.error(error);
     }
   },

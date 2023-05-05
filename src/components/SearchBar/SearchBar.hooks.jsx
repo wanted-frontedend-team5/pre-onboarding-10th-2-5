@@ -10,7 +10,6 @@ import {
 export const useDebounceRecommend = keyword => {
   const [recommendations, setRecommendations] = useState([]);
 
-  // TODO: 일단 MaxLength : 7 로 처리 하겠습니다.
   const fetchRecommendations = useCallback(async () => {
     const recommendationList = await searchConditionsApi.getCondition(keyword);
     if (!recommendationList) {

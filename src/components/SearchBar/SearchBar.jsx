@@ -13,19 +13,21 @@ export const SearchBar = () => {
     setValue,
   );
 
-  // FIXME: form submit handelr
-  const handleSearch = keyword => {
-    alert(keyword);
+  const handleSearch = () => {
     setIsVisible(false);
+  };
+
+  const onChangeInput = e => {
+    onChange(e);
+    setIsVisible(true);
   };
 
   return (
     <form
       ref={ref}
-      // TODO: 채욱님 께서 필요하신 대로 변경 부탁드립니다.
       onSubmit={e => {
         e.preventDefault();
-        handleSearch(value);
+        handleSearch();
       }}
     >
       <Styled.SearchBar>
@@ -37,7 +39,7 @@ export const SearchBar = () => {
             setFocusIndex(0);
           }}
           onKeyDown={onKeyDownHandler}
-          onChange={onChange}
+          onChange={onChangeInput}
         />
 
         <Styled.Button>검색</Styled.Button>

@@ -10,7 +10,7 @@ export const searchConditionsApi = {
       const cachedData = getCachedData(cacheKey);
       if (cachedData) return cachedData;
 
-      const response = await axiosInstance.get('/search-conditions', {
+      const response = await axiosInstance.get('/search-conditions/', {
         params: { name: keyword },
       });
 

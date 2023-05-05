@@ -1,49 +1,22 @@
-import { useMemo, useState } from 'react';
 import { useClickOutside } from 'hooks/useClickOutside';
 import { useInput } from 'hooks/useInput';
 import { Recommendation } from './Recommendation';
-import { useDebounceRecommend } from './SearchBar.hooks';
-import { searchEnterKeyCode, searchLength } from './SearchBar.constants';
+import { useDebounceRecommend, useKeyPress } from './SearchBar.hooks';
 import * as Styled from './SearchBar.styles';
 
 export const SearchBar = () => {
   const { ref, isVisible, setIsVisible } = useClickOutside();
-  // TODO: 더 우아하게 처리하는 방법을 모르겠습니다..
   const { value, onChange, setValue } = useInput('');
   const { recommendations } = useDebounceRecommend(value);
-  const [focusIndex, setFocusIndex] = useState(0);
+  const { focusIndex, setFocusIndex, onKeyDownHandler } = useKeyPress(
+    recommendations,
+    setValue,
+  );
 
   // FIXME: form submit handelr
   const handleSearch = keyword => {
     alert(keyword);
     setIsVisible(false);
-  };
-
-  const recommendLen = useMemo(
-    () =>
-      recommendations.length + 1 <= searchLength.INDEX_MAX
-        ? recommendations.length + 1
-        : searchLength.INDEX_MAX,
-    [recommendations],
-  );
-
-  const onKeyDownHandler = event => {
-    switch (event.keyCode) {
-      case searchEnterKeyCode.ENTER:
-        if (!recommendations[focusIndex - 1]) return;
-        setValue(recommendations[focusIndex - (1 % recommendLen)].name);
-        setIsVisible(false);
-        setFocusIndex(0);
-        break;
-      case searchEnterKeyCode.ARROW_DOWN:
-        setFocusIndex(focusIndex < recommendLen - 1 ? focusIndex + 1 : 1);
-        break;
-      case searchEnterKeyCode.ARROW_UP:
-        setFocusIndex(focusIndex === 1 ? recommendLen - 1 : focusIndex - 1);
-        break;
-      default:
-        break;
-    }
   };
 
   return (
